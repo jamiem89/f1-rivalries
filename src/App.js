@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header/Header'
+import Welcome from './components/Welcome/Welcome'
+import Comparison from './components/Comparison/Comparison';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [appStage, setAppStage] = React.useState('start');
+    const [drivers, setDrivers] = React.useState(null);
+
+    React.useEffect(() => {
+        fetch('http://ergast.com/api/f1/2022/drivers.json')
+        .then(response => response.json())
+        .then(data => {
+            setDrivers(data.MRData.DriverTable.Drivers);
+        });
+    }, []);
+
+  return (<>
+        <Header />
+        {appStage === 'start' &&  <Welcome setAppStage={setAppStage}/>}
+        {appStage === 'main' &&  <Comparison setAppStage={setAppStage} drivers={drivers}/>}
+    </>);
 }
 
 export default App;
