@@ -1,12 +1,24 @@
 import React from 'react';
 import DriverCard from '../DriverCard/DriverCard'
 
-function DriverGrid(){
+function DriverGrid(props){
+
+
+    const driverCards = props.activeDrivers.map(driver => {
+        return (
+            <DriverCard
+                key={driver.name}
+                name={driver.name}
+                number={driver.number}
+                img={driver.img}
+            />
+        );
+    })
+
     return (
         <section className="driver-grid">
             <div className="driver-grid__header">
-                <DriverCard />
-                <DriverCard />
+                {driverCards}
             </div>
             <div className="driver-grid__table">
                 {/* <DriverData

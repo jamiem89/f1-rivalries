@@ -6,12 +6,24 @@ import DriverGrid from '../DriverGrid/DriverGrid'
 
 function Comparison(props) {
 
-    const [activeDrivers, setActiveDrivers] = React.useState([]);
+    const [activeDrivers, setActiveDrivers] = React.useState([{},{}]);
+    const [driverDataOne, setDriverDataOne] = React.useState({});
+    const [driverDataTwo, setDriverDataTwo] = React.useState({});
 
     return (
         <main className="comparison">
-            <DriverSelect drivers={props.drivers} setActiveDrivers={setActiveDrivers} currentActiveDrivers={activeDrivers}/>
-            <DriverGrid />
+            <DriverSelect
+                drivers={props.drivers}
+                activeDrivers={activeDrivers}
+                setActiveDrivers={setActiveDrivers}
+                setDriverDataOne={setDriverDataOne}
+                setDriverDataTwo={setDriverDataTwo}
+            />
+            <DriverGrid
+                activeDrivers={activeDrivers}
+                driverDataOne={driverDataOne}
+                driverDataTwo={driverDataTwo}
+            />
             {/* <Results /> */}
             {/* <Footer /> */}
         </main>

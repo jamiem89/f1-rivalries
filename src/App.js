@@ -5,9 +5,10 @@ import Welcome from './components/Welcome/Welcome'
 import Comparison from './components/Comparison/Comparison';
 
 function App() {
-
+    // Change this back to 'start' for prod
     const [appStage, setAppStage] = React.useState('start');
     const [drivers, setDrivers] = React.useState(null);
+
 
     React.useEffect(() => {
         fetch('http://ergast.com/api/f1/2022/drivers.json')
@@ -20,7 +21,12 @@ function App() {
   return (<>
         <Header />
         {appStage === 'start' &&  <Welcome setAppStage={setAppStage}/>}
-        {appStage === 'main' &&  <Comparison setAppStage={setAppStage} drivers={drivers}/>}
+        {appStage === 'main'
+        &&
+        <Comparison
+            setAppStage={setAppStage}
+            drivers={drivers}
+        />}
     </>);
 }
 

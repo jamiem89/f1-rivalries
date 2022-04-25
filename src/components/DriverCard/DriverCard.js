@@ -1,14 +1,16 @@
 import React from 'react';
+import './DriverCard.css';
 
 function DriverCard(props){
+
     return (
         <div className="driver-card">
             <div className="driver-card__img">
-                <img src={`../images/driver-image--${props.driverName}`} alt="" />
+                <img src={props.img} alt="" />
             </div>
             <div className="driver-card__info">
-                <span className="driver-card__number">#4</span>
-                <h2 className="driver-card__title">Lando Norris</h2>
+                <span className="driver-card__number">{props.number}</span>
+                <h2 className="driver-card__title">{props.name}</h2>
             </div>
 
         </div>

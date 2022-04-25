@@ -1,0 +1,11 @@
+.driver-card {
+    width: 50%;
+    float: left;
+    padding: .8rem;
+    box-sizing:border-box;
+}
+
+.driver-card img {
+    max-width: 100%;
+    height: auto;
+}
