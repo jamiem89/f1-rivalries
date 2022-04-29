@@ -10,6 +10,7 @@ function Comparison(props) {
     const [driverDataOne, setDriverDataOne] = React.useState({});
     const [driverDataTwo, setDriverDataTwo] = React.useState({});
 
+
     return (
         <main className="comparison">
             <DriverSelect

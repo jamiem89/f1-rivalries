@@ -1,13 +1,14 @@
 import React from 'react';
-import DriverCard from '../DriverCard/DriverCard'
+import DriverCard from '../DriverCard/DriverCard';
+import DriverTableRows from '../DriverTableRows/DriverTableRows'
 
 function DriverGrid(props){
-
 
     const driverCards = props.activeDrivers.map(driver => {
         return (
             <DriverCard
                 key={driver.name}
+                id={driver.name}
                 name={driver.name}
                 number={driver.number}
                 img={driver.img}
@@ -20,14 +21,7 @@ function DriverGrid(props){
             <div className="driver-grid__header">
                 {driverCards}
             </div>
-            <div className="driver-grid__table">
-                {/* <DriverData
-                    title=""
-                    data-one=""
-                    data-two=""
-                /> */}
-            </div>
-
+            <DriverTableRows driverDataOne={props.driverDataOne} driverDataTwo={props.driverDataTwo}/>
         </section>
     )
 }

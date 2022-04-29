@@ -32,21 +32,21 @@ function DriverSelect(props){
         // Update state to show latest drivers select
         let index = e.target.dataset.select;
 
-
         let driver = {
+            id: e.target.options[e.target.selectedIndex].value,
             name: e.target.options[e.target.selectedIndex].dataset.name,
             number: e.target.options[e.target.selectedIndex].dataset.number,
-            img: `./images/driver-${e.target.options[e.target.selectedIndex].dataset.name.toLowerCase()}.png`
+            // img: `./img/${e.target.options[e.target.selectedIndex].value}.png`
         }
+
         let newActiveDrivers = props.activeDrivers;
         newActiveDrivers[index] = driver;
         props.setActiveDrivers(newActiveDrivers);
 
         // Prepare driver Data and set activedriverone state
-        fetch(`https://ergast.com/api/f1/2022/drivers/${props.activeDrivers[index]}/results.json`)
+        fetch(`https://ergast.com/api/f1/2022/drivers/${props.activeDrivers[index].id}/results.json`)
         .then(response => response.json())
         .then(data => {
-
             data = data.MRData.RaceTable.Races;
             let resultsArray = [];
 
@@ -64,7 +64,7 @@ function DriverSelect(props){
                 resultsArray.push(resultsEntry);
             })
 
-            if(index === 0) {
+            if(index === '0') {
                 props.setDriverDataOne(resultsArray);
             } else {
                 props.setDriverDataTwo(resultsArray);
